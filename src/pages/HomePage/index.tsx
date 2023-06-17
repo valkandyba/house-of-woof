@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { HomePageProps } from "./types";
+import { HomePageProps } from './types';
 
-import Header from "../../components/Header/Header";
+import Header from '../../components/Layout/Header/Header';
 
 const HomePage: React.FC<HomePageProps> = ({}) => {
   return <Header />;
