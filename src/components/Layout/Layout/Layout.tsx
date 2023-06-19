@@ -1,9 +1,6 @@
 import React, { ReactNode } from 'react';
-
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-
-import './Layout.scss'
 
 type layoutProps = {
     children: ReactNode,
@@ -11,7 +8,7 @@ type layoutProps = {
 
 const Layout: React.FC<layoutProps> = ({children}) => {
     return(
-        <div id='wrapper'>
+        <div id='wrapper' >
             <Header />
             <main id='main'>{children}</main>
             <Footer/>

@@ -1,20 +1,8 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider } from "@mui/material";
-
-import './App.css';
-
+import { ThemeProvider } from "@mui/material";
+import theme from './theme/theme'
 import HomePage from './pages/HomePage/index';
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#9ccfe2'
-        }
-    },
-    typography: {
-        fontFamily: 'Quicksand'
-    }
-})
+import './App.css';
 
 function App() {
   return (

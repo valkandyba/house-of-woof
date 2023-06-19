@@ -9,17 +9,14 @@
     'footer';
 }
 
-/*Header*/
 #header {
   grid-area: header;
 }
 
-/*Main*/
 #main {
   grid-area: main;
 }
 
-/*Footer*/
-.footer {
+#footer {
   grid-area: footer;
 }

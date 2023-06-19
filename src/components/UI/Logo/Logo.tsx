@@ -1,30 +1,26 @@
 import React from 'react';
 import {Typography} from "@mui/material";
-
 import LogoImg from '../../../assets/logo-house-of-woof.svg';
-
-import './Logo.scss';
+import classes from './Logo.module.scss'
 
 type LogoProps = {
     imgWidth: number;
 };
 
-const Logo: React.FC<LogoProps> = (imgWidth) => {
+const Logo: React.FC<LogoProps> = ({imgWidth}) => {
     return (
-        <div className="logo">
-            <a className="logo__link" href='#'>
+        <div>
+            <a className={classes["logo-link"]} href='#'>
                 <img
                     style={{width: imgWidth + 'px'}}
-                    className="logo__img"
+                    className={classes["logo-img"]}
                     src={LogoImg}
                     alt='Logo'
                 />
                 <Typography
-                    sx={{
-                        lineHeight: 'inherit',
-                        fontWeight: 'bold',
-                        textAlign: 'center'
-                    }}
+                    className={classes["logo-text"]}
+                    lineHeight={1}
+                    fontWeight={"bold"}
                     variant="h6"
                     component="span">
                     House <br/> of <br/>  Woof!
