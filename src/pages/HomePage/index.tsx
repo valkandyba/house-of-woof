@@ -2,10 +2,14 @@ import React from 'react';
 
 import { HomePageProps } from './types';
 
-import Header from '../../components/Layout/Header/Header';
+import Layout from "../../components/Layout/Layout/Layout";
 
 const HomePage: React.FC<HomePageProps> = ({}) => {
-  return <Header />;
+  return(
+      <Layout>
+          <p>Lorem</p>
+      </Layout>
+  )
 };
 
 export default HomePage;
