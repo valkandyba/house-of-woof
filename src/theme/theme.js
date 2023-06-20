@@ -7,7 +7,10 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: 'Quicksand'
+        fontFamily: 'Quicksand',
+        allVariants: {
+            color: '#2f3539'
+        }
     },
 
     components: {

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
-@import "./theme/common-styles.scss";
+@import 'theme/colors.scss';
+@import 'theme/common-styles.scss';
 
 body {
   margin: 0;
@@ -9,6 +10,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #2f3539;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 code {
