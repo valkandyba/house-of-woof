@@ -1,0 +1,16 @@
+.banner {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 20px;
+  background-image: url('../../assets/banner-img.jpg');
+  background-size: cover;
+  background-position: 0 50%;
+  color: #fff;
+}
+
+.banner-container {
+  margin-right: 0;
+}
