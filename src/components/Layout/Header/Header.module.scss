@@ -1,0 +1,15 @@
+@import 'src/theme/colors';
+
+.header {
+  padding: 5px 0;
+  color: $white;
+}
+
+.toolbar {
+  padding-left: 10px;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+}
