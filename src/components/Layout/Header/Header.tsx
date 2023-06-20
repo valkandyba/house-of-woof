@@ -1,18 +1,40 @@
 import React from 'react';
 
-import HeaderLogo from './HeaderLogo/HeaderLogo';
-import HeaderNav from "./HeaderNav/HeaderNav";
+import {AppBar, Toolbar, Box, IconButton, Badge, Button} from '@mui/material';
+import { Favorite, ShoppingBasket, AccountCircle } from '@mui/icons-material';
 
-import './Header.scss'
+import Logo from '../../UI/Logo/Logo';
+
+import classes from "./Header.module.scss"
 
 const Header: React.FC = () => {
     return (
-        <header id='header'>
-            <div className="container">
-                <HeaderLogo/>
-                <HeaderNav activeItem="1"/>
-            </div>
-        </header>
+        <AppBar position="static" id='header' className={classes.header}>
+            <Toolbar className={classes.toolbar}>
+                <Logo imgWidth={55}/>
+                <Box className={classes.actions}>
+                    <IconButton size="large" color="inherit">
+                        <Badge badgeContent={4} color="error">
+                            <Favorite />
+                        </Badge>
+                    </IconButton>
+
+                    <IconButton size="large" color="inherit" >
+                        <Badge badgeContent={17} color="error">
+                            <ShoppingBasket />
+                        </Badge>
+                    </IconButton>
+                    <Button
+                        variant="outlined"
+                        startIcon={<AccountCircle />}
+                        size="large"
+                        sx={{color: 'inherit'}}
+                    >
+                        LogIn
+                    </Button>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
 
