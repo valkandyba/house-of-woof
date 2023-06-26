@@ -261,3 +261,5 @@ const DUMMY_GOODS = [
         price: 50,
     }
 ];
+
+export default DUMMY_GOODS;
