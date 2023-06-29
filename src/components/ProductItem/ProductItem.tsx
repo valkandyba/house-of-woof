@@ -3,11 +3,12 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography, IconButt
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { StoreItem }  from '../../store/types'
+import ShoppingButton from "../UI/ShoppingButton/ShoppingButton";
 
 const ProductItem: React.FC<StoreItem> = ({id, name, img, description, price}) => {
     return (
         <div>
-            <Card>
+            <Card sx={{ maxWidth: 345, my: 2, mx: 2 }}>
                 <CardMedia
                     key={id}
                     component="img"
@@ -20,11 +21,11 @@ const ProductItem: React.FC<StoreItem> = ({id, name, img, description, price}) =
                     <Typography variant="body2" color="text.secondary">{description}</Typography>
                     <Typography variant="body2">{price}</Typography>
                 </CardContent>
-                <CardActions>
-                    <IconButton aria-label="add to favorites">
+                <CardActions sx={{display: "flex", justifyContent: "space-between"}}>
+                    <IconButton aria-label="add to favorites" color="primary">
                         <FavoriteIcon />
                     </IconButton>
-                    <Button size="small">Learn More</Button>
+                    <ShoppingButton/>
                 </CardActions>
             </Card>
         </div>

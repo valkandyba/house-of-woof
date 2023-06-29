@@ -1,4 +1,4 @@
-const imgPath = '../../assets/goods/';
+const imgPath = '../assets/goods/';
 
 const DUMMY_GOODS = [
     {
