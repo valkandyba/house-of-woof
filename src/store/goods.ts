@@ -1,4 +1,4 @@
-const imgPath = '../../assets/goods/';
+const imgPath = '../assets/goods/';
 
 const DUMMY_GOODS = [
     {
@@ -261,3 +261,5 @@ const DUMMY_GOODS = [
         price: 50,
     }
 ];
+
+export default DUMMY_GOODS;
