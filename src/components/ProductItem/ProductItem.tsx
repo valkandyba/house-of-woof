@@ -23,7 +23,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
   return (
     <Card className={classes.product}>
       <CardMedia component='img' alt={name} height='140' image={img} />
-      <CardContent className={classes['product-content ']}>
+      <CardContent className={classes['product-content']}>
         <Typography gutterBottom variant='h5' component='h5'>
           {name}
         </Typography>

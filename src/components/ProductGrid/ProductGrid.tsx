@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid } from '@mui/material';
 import ProductItem from '../ProductItem/ProductItem';
 import DUMMY_GOODS from '../../store/goods';
-import img from '../../assets/goods/goods_2.jpeg';
+import img from '../../assets/goods/goods_7.jpeg';
 
 const ProductGrid: React.FC = () => {
   return (
