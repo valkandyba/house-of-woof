@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardActions,
@@ -20,6 +20,31 @@ const ProductItem: React.FC<ProductItemProps> = ({
   description,
   price,
 }) => {
+  const [isAdded, setIsAdded] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  const handleAddClick = () => {
+    setIsAdded(true);
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 3000);
+    setQuantity(quantity + 1);
+  };
+
+  const handleDeleteClick = () => {
+    setQuantity(0);
+  };
+
+  const handleIncrementClick = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrementClick = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <Card className={classes.product}>
       <CardMedia component='img' alt={name} height='140' image={img} />
@@ -36,7 +61,14 @@ const ProductItem: React.FC<ProductItemProps> = ({
         <IconButton aria-label='add to favorites' color='primary'>
           <FavoriteIcon />
         </IconButton>
-        <ShoppingButton />
+        <ShoppingButton
+          isAdded={isAdded}
+          quantity={quantity}
+          onAddClick={handleAddClick}
+          onDeleteClick={handleDeleteClick}
+          onIncrementClick={handleIncrementClick}
+          onDecrementClick={handleDecrementClick}
+        />
       </CardActions>
     </Card>
   );

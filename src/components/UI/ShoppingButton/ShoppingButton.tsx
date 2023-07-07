@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconButton, Input } from '@mui/material';
 import { Add, Delete, Remove } from '@mui/icons-material';
 import classes from './ShoppingButton.module.scss';
 
-const ShoppingButton = () => {
-  const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+type ShoppingButtonProps = {
+  isAdded: boolean;
+  quantity: number;
+  onAddClick: () => void;
+  onDeleteClick: () => void;
+  onIncrementClick: () => void;
+  onDecrementClick: () => void;
+};
 
-  const handleAddClick = () => {
-    setIsAdded(true);
-    setTimeout(() => {
-      setIsAdded(false);
-    }, 3000);
-  };
-
-  const handleDeleteClick = () => {
-    setQuantity(0);
-  };
-
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  if (!isAdded) {
+const ShoppingButton: React.FC<ShoppingButtonProps> = ({
+  isAdded,
+  quantity,
+  onAddClick,
+  onDeleteClick,
+  onIncrementClick,
+  onDecrementClick,
+}) => {
+  if (!isAdded && quantity < 1) {
     return (
       <IconButton
         className={classes['quantity-button']}
         color='primary'
-        onClick={handleAddClick}
+        onClick={onAddClick}
       >
         <Add />
       </IconButton>
@@ -46,7 +38,7 @@ const ShoppingButton = () => {
         <IconButton
           className={`${classes.button} ${classes.minus}`}
           color='primary'
-          onClick={handleDecrement}
+          onClick={onDecrementClick}
         >
           <Remove />
         </IconButton>
@@ -54,7 +46,7 @@ const ShoppingButton = () => {
         <IconButton
           className={`${classes.button} ${classes.minus}`}
           color='primary'
-          onClick={handleDeleteClick}
+          onClick={onDeleteClick}
         >
           <Delete />
         </IconButton>
@@ -63,12 +55,12 @@ const ShoppingButton = () => {
         className={classes.input}
         type='number'
         value={quantity}
-        onChange={e => setQuantity(parseInt(e.target.value))}
+        readOnly
       />
       <IconButton
         className={`${classes.button} ${classes.add}`}
         color='primary'
-        onClick={handleIncrement}
+        onClick={onIncrementClick}
       >
         <Add />
       </IconButton>
