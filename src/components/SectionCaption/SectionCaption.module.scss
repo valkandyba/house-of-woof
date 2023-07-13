@@ -1,5 +1,11 @@
 .caption {
   text-align: center;
-  padding: 20px 0;
-  margin-bottom: 30px;
+  padding: 20px 0 30px;
+}
+
+.caption-img {
+  max-width: 300px;
+  max-height: 150px;
+  display: block;
+  margin: 20px auto 0;
 }
