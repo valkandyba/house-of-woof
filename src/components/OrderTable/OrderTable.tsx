@@ -28,18 +28,17 @@ function toFixedCurrency(num: number) {
   return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty: number, price: number) {
+function calculateItemTotal(item: OrderItem) {
+  const { qty, price } = item;
   return qty * price;
 }
 
-function calculateItemTotal(items: readonly OrderItem[]) {
-  return items
-    .map(({ qty, price }) => priceRow(qty, price))
-    .reduce((sum, i) => sum + i, 0);
+function calculateOrderTotal(items: readonly OrderItem[]) {
+  return items.map(calculateItemTotal).reduce((sum, i) => sum + i, 0);
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
-  const invoiceTotal = calculateItemTotal(orderItems);
+  const invoiceTotal = calculateOrderTotal(orderItems);
   const invoiceSubtotal = invoiceTotal / (TAX_RATE + 1);
   const invoiceTaxes = invoiceTotal - invoiceSubtotal;
 
@@ -71,7 +70,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
                 <TableCell align='right'>{row.qty}</TableCell>
                 <TableCell align='right'>{row.price}</TableCell>
                 <TableCell align='right'>
-                  {toFixedCurrency(priceRow(row.qty, row.price))}
+                  {toFixedCurrency(calculateItemTotal(row))}
                 </TableCell>
               </TableRow>
             ))}
