@@ -8,15 +8,21 @@ import WishListPage from './pages/WishListPage';
 
 import './App.css';
 
+export enum AppRoutes {
+  HOME_PAGE = '/',
+  WISH_LIST = '/wish-list',
+  ORDER = '/order',
+}
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className='App'>
         <Router>
           <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/order' element={<OrderPage />} />
-            <Route path='/wish-list' element={<WishListPage />} />
+            <Route path={AppRoutes.HOME_PAGE} element={<HomePage />} />
+            <Route path={AppRoutes.ORDER} element={<OrderPage />} />
+            <Route path={AppRoutes.WISH_LIST} element={<WishListPage />} />
           </Routes>
         </Router>
       </div>

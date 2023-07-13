@@ -5,21 +5,21 @@ import { AccountCircle, Favorite, ShoppingBasket } from '@mui/icons-material';
 import Logo from '../../UI/Logo/Logo';
 import classes from './Header.module.scss';
 
-const Routes = {
-  HOME_PAGE: '/',
-  WISH_LIST: '/wish-list',
-  ORDER: '/order',
-};
+export enum AppRoutes {
+  HOME_PAGE = '/',
+  WISH_LIST = '/wish-list',
+  ORDER = '/order',
+}
 
 const Header: React.FC = () => {
   return (
     <AppBar position='static' id='header' className={classes.header}>
       <Toolbar className={classes.toolbar}>
-        <Link to={Routes.HOME_PAGE} className={classes['logo-link']}>
+        <Link to={AppRoutes.HOME_PAGE} className={classes['logo-link']}>
           <Logo imgWidth={55} />
         </Link>
         <Box className={classes.actions}>
-          <Link to={Routes.WISH_LIST} className={classes['nav-link']}>
+          <Link to={AppRoutes.WISH_LIST} className={classes['nav-link']}>
             <IconButton size='large' color='inherit'>
               <Badge badgeContent={4} color='error'>
                 <Favorite />
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             </IconButton>
           </Link>
 
-          <Link to={Routes.ORDER} className={classes['nav-link']}>
+          <Link to={AppRoutes.ORDER} className={classes['nav-link']}>
             <IconButton size='large' color='inherit'>
               <Badge badgeContent={17} color='error'>
                 <ShoppingBasket />
