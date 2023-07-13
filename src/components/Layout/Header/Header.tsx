@@ -4,12 +4,7 @@ import { AppBar, Badge, Box, Button, IconButton, Toolbar } from '@mui/material';
 import { AccountCircle, Favorite, ShoppingBasket } from '@mui/icons-material';
 import Logo from '../../UI/Logo/Logo';
 import classes from './Header.module.scss';
-
-export enum AppRoutes {
-  HOME_PAGE = '/',
-  WISH_LIST = '/wish-list',
-  ORDER = '/order',
-}
+import { AppRoutes } from '../../../constants';
 
 const Header: React.FC = () => {
   return (

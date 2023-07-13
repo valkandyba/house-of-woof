@@ -5,14 +5,9 @@ import theme from './theme/theme';
 import HomePage from './pages/HomePage/index';
 import OrderPage from './pages/OrderPage/index';
 import WishListPage from './pages/WishListPage';
+import { AppRoutes } from './constants';
 
 import './App.css';
-
-export enum AppRoutes {
-  HOME_PAGE = '/',
-  WISH_LIST = '/wish-list',
-  ORDER = '/order',
-}
 
 function App() {
   return (
