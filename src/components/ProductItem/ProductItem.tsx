@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import {
   Card,
   CardActions,
@@ -8,41 +8,45 @@ import {
   Typography,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ProductContext from '../../store/Cart/cart-context';
 import ShoppingButton from '../UI/ShoppingButton/ShoppingButton';
-import { StoreItem } from '../../store/types';
+import { CartItem } from '../../store/types';
 import classes from './ProductItem.module.scss';
 
-type ProductItemProps = Omit<StoreItem, 'id'>;
+type ProductItemProps = Omit<CartItem, 'amount'>;
 
 const ProductItem: React.FC<ProductItemProps> = ({
+  id,
   name,
   img,
   description,
   price,
 }) => {
-  const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const {
+    handleAddItem,
+    handleIncrementItem,
+    handleDecrementItem,
+    handleRemoveItem,
+    items,
+  } = useContext(ProductContext);
+
+  const isAdded = items.some(item => item.id === id);
+  const quantity = items.find(item => item.id === id)?.amount || 0;
 
   const handleAddClick = () => {
-    setIsAdded(true);
-    setTimeout(() => {
-      setIsAdded(false);
-    }, 3000);
-    setQuantity(quantity + 1);
+    handleAddItem({ id, name, img, description, price, amount: 1 });
   };
 
   const handleDeleteClick = () => {
-    setQuantity(0);
+    handleRemoveItem(id);
   };
 
   const handleIncrementClick = () => {
-    setQuantity(quantity + 1);
+    handleIncrementItem(id);
   };
 
   const handleDecrementClick = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
+    handleDecrementItem(id);
   };
 
   return (
