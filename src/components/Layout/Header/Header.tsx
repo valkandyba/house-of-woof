@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Badge, Box, Button, IconButton, Toolbar } from '@mui/material';
 import { AccountCircle, Favorite, ShoppingBasket } from '@mui/icons-material';
+import CartContext from '../../../store/Cart/cart-context';
 import Logo from '../../UI/Logo/Logo';
-import ProductContext from '../../../store/Cart/cart-context';
 import classes from './Header.module.scss';
 import { AppRoutes } from '../../../constants';
 
 const Header: React.FC = () => {
-  const productCtx = useContext(ProductContext);
+  const { items } = useContext(CartContext);
 
-  const numberOfProductItems = productCtx.items.reduce((curNumber, item) => {
+  const numberOfProductItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
 

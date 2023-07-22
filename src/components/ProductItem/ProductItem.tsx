@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ProductContext from '../../store/Cart/cart-context';
+import CartContext from '../../store/Cart/cart-context';
 import ShoppingButton from '../UI/ShoppingButton/ShoppingButton';
 import { CartItem } from '../../store/types';
 import classes from './ProductItem.module.scss';
@@ -28,7 +28,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
     handleDecrementItem,
     handleRemoveItem,
     items,
-  } = useContext(ProductContext);
+  } = useContext(CartContext);
 
   const isAdded = items.some(item => item.id === id);
   const quantity = items.find(item => item.id === id)?.amount || 0;

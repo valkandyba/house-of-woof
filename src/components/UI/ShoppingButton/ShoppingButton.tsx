@@ -22,12 +22,6 @@ const ShoppingButton: React.FC<ShoppingButtonProps> = ({
 }) => {
   const amountInputRef = useRef<HTMLInputElement | null>(null);
 
-  // const submitHandler = () => {
-  //   const enteredAmount = amountInputRef.current?.value;
-  //   const enteredAmountNumber = enteredAmount ? +enteredAmount : 0;
-  //   onIncrementClick(enteredAmountNumber);
-  // };
-
   if (!isAdded && quantity < 1) {
     return (
       <IconButton
