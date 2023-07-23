@@ -1,23 +1,49 @@
 import { createTheme } from '@mui/material';
 
+const white = '#ffffff';
+const lightBlue = '#9ccfe2';
+const mediumGray = '#2f3539';
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#9ccfe2',
+      main: lightBlue,
     },
   },
   typography: {
     fontFamily: 'Quicksand',
     allVariants: {
-      color: '#2f3539',
+      color: mediumGray,
     },
   },
-
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: white,
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          color: '#fff',
+          color: white,
+        },
+      },
+    },
+    MuiTableHead: {
+      defaultProps: {
+        sx: {
+          backgroundColor: theme => theme.palette.primary.main,
+        },
+      },
+      styleOverrides: {
+        root: {
+          '& .MuiTableCell-root': {
+            color: white,
+            fontWeight: 'bold',
+            fontSize: '1.1rem',
+          },
         },
       },
     },

@@ -12,10 +12,10 @@ import {
 import classes from './OrderTable.module.scss';
 
 interface OrderTableProps {
-  rows: Row[];
+  orderItems: OrderItem[];
 }
 
-interface Row {
+interface OrderItem {
   name: string;
   img: string;
   qty: number;
@@ -24,23 +24,22 @@ interface Row {
 
 const TAX_RATE = 0.2;
 
-function ccyFormat(num: number) {
+function toFixedCurrency(num: number) {
   return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty: number, price: number) {
+function calculateItemTotal(item: OrderItem) {
+  const { qty, price } = item;
   return qty * price;
 }
 
-function total(items: readonly Row[]) {
-  return items
-    .map(({ qty, price }) => priceRow(qty, price))
-    .reduce((sum, i) => sum + i, 0);
+function calculateOrderTotal(items: readonly OrderItem[]) {
+  return items.map(calculateItemTotal).reduce((sum, i) => sum + i, 0);
 }
 
-const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
-  const invoiceTotal = total(rows);
-  const invoiceSubtotal = (invoiceTotal / (TAX_RATE * 100 + 100)) * 100;
+const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
+  const invoiceTotal = calculateOrderTotal(orderItems);
+  const invoiceSubtotal = invoiceTotal / (TAX_RATE + 1);
   const invoiceTaxes = invoiceTotal - invoiceSubtotal;
 
   return (
@@ -56,7 +55,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {orderItems.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <div className={classes['item-cel']}>
@@ -71,25 +70,31 @@ const OrderTable: React.FC<OrderTableProps> = ({ rows }) => {
                 <TableCell align='right'>{row.qty}</TableCell>
                 <TableCell align='right'>{row.price}</TableCell>
                 <TableCell align='right'>
-                  {ccyFormat(priceRow(row.qty, row.price))}
+                  {toFixedCurrency(calculateItemTotal(row))}
                 </TableCell>
               </TableRow>
             ))}
             <TableRow>
               <TableCell rowSpan={3} />
               <TableCell colSpan={2}>Subtotal</TableCell>
-              <TableCell align='right'>{ccyFormat(invoiceSubtotal)}</TableCell>
+              <TableCell align='right'>
+                {toFixedCurrency(invoiceSubtotal)}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Tax</TableCell>
               <TableCell align='right'>{`${(TAX_RATE * 100).toFixed(
                 0,
               )} %`}</TableCell>
-              <TableCell align='right'>{ccyFormat(invoiceTaxes)}</TableCell>
+              <TableCell align='right'>
+                {toFixedCurrency(invoiceTaxes)}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}>Total</TableCell>
-              <TableCell align='right'>{ccyFormat(invoiceTotal)}</TableCell>
+              <TableCell align='right'>
+                {toFixedCurrency(invoiceTotal)}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

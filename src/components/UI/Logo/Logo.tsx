@@ -5,12 +5,13 @@ import classes from './Logo.module.scss';
 
 type LogoProps = {
   imgWidth: number;
+  route?: string;
 };
 
-const Logo: React.FC<LogoProps> = ({ imgWidth }) => {
+const Logo: React.FC<LogoProps> = ({ imgWidth, route }) => {
   return (
     <div>
-      <a className={classes['logo-link']} href='#'>
+      <a className={classes['logo-link']} href={route}>
         <img
           style={{ width: imgWidth + 'px' }}
           className={classes['logo-img']}

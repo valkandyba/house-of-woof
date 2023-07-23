@@ -13,3 +13,16 @@
 .actions {
   display: flex;
 }
+
+.logo-link {
+  text-decoration: none;
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.nav-link {
+  color: $white;
+}

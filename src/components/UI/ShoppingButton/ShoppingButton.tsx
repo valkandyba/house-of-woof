@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { IconButton, Input } from '@mui/material';
 import { Add, Delete, Remove } from '@mui/icons-material';
 import classes from './ShoppingButton.module.scss';
@@ -20,6 +20,8 @@ const ShoppingButton: React.FC<ShoppingButtonProps> = ({
   onIncrementClick,
   onDecrementClick,
 }) => {
+  const amountInputRef = useRef<HTMLInputElement | null>(null);
+
   if (!isAdded && quantity < 1) {
     return (
       <IconButton
@@ -52,15 +54,16 @@ const ShoppingButton: React.FC<ShoppingButtonProps> = ({
         </IconButton>
       )}
       <Input
+        ref={amountInputRef}
         className={classes.input}
         type='number'
         value={quantity}
         readOnly
       />
       <IconButton
+        onClick={onIncrementClick}
         className={`${classes.button} ${classes.add}`}
         color='primary'
-        onClick={onIncrementClick}
       >
         <Add />
       </IconButton>
