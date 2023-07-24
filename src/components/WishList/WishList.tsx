@@ -4,20 +4,20 @@ import WishListItem from './WishListItem/WishListItem';
 import './WishList.module.scss';
 
 interface WishTableProps {
-  rows: Row[];
+  favoriteItems: FavoriteItem[];
 }
 
-interface Row {
+interface FavoriteItem {
   id: string;
   name: string;
   img: string;
   price: number;
 }
 
-const WishList: React.FC<WishTableProps> = ({ rows }) => {
+const WishList: React.FC<WishTableProps> = ({ favoriteItems }) => {
   return (
     <ul className={classes['wish-list']}>
-      {rows.map(wishListItem => (
+      {favoriteItems.map(wishListItem => (
         <WishListItem
           id={wishListItem.id}
           key={wishListItem.id}
