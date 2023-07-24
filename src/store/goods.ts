@@ -15,7 +15,7 @@ const DUMMY_GOODS = [
     name: '2 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 60,
   },
   {
     id: 'g3',
@@ -23,7 +23,7 @@ const DUMMY_GOODS = [
     name: '3 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 70,
   },
   {
     id: 'g4',
@@ -31,7 +31,7 @@ const DUMMY_GOODS = [
     name: '4 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 80,
   },
   {
     id: 'g5',
@@ -39,7 +39,7 @@ const DUMMY_GOODS = [
     name: '5 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 90,
   },
   {
     id: 'g6',
@@ -47,7 +47,7 @@ const DUMMY_GOODS = [
     name: '6 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 100,
   },
   {
     id: 'g7',
@@ -55,7 +55,7 @@ const DUMMY_GOODS = [
     name: '7 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 110,
   },
   {
     id: 'g8',
@@ -63,7 +63,7 @@ const DUMMY_GOODS = [
     name: '8 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 120,
   },
   {
     id: 'g9',
@@ -71,7 +71,7 @@ const DUMMY_GOODS = [
     name: '9 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 130,
   },
   {
     id: 'g10',
@@ -79,7 +79,7 @@ const DUMMY_GOODS = [
     name: '10 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 140,
   },
   {
     id: 'g11',
@@ -87,7 +87,7 @@ const DUMMY_GOODS = [
     name: '11 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 150,
   },
   {
     id: 'g12',
@@ -95,7 +95,7 @@ const DUMMY_GOODS = [
     name: '12 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 160,
   },
   {
     id: 'g13',
@@ -103,7 +103,7 @@ const DUMMY_GOODS = [
     name: '13 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 170,
   },
   {
     id: 'g14',
@@ -111,7 +111,7 @@ const DUMMY_GOODS = [
     name: '14 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 180,
   },
   {
     id: 'g15',
@@ -119,7 +119,7 @@ const DUMMY_GOODS = [
     name: '15 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 190,
   },
   {
     id: 'g16',
@@ -127,7 +127,7 @@ const DUMMY_GOODS = [
     name: '16 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 200,
   },
   {
     id: 'g17',
@@ -143,7 +143,7 @@ const DUMMY_GOODS = [
     name: '18 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 60,
   },
   {
     id: 'g19',
@@ -151,7 +151,7 @@ const DUMMY_GOODS = [
     name: '19 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 70,
   },
   {
     id: 'g20',
@@ -159,7 +159,7 @@ const DUMMY_GOODS = [
     name: '20 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 80,
   },
   {
     id: 'g21',
@@ -167,7 +167,7 @@ const DUMMY_GOODS = [
     name: '21 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 90,
   },
   {
     id: 'g22',
@@ -175,7 +175,7 @@ const DUMMY_GOODS = [
     name: '22 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 100,
   },
   {
     id: 'g23',
@@ -183,7 +183,7 @@ const DUMMY_GOODS = [
     name: '23 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 110,
   },
   {
     id: 'g24',
@@ -191,7 +191,7 @@ const DUMMY_GOODS = [
     name: '24 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 120,
   },
   {
     id: 'g25',
@@ -199,7 +199,7 @@ const DUMMY_GOODS = [
     name: '25 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 130,
   },
   {
     id: 'g26',
@@ -207,7 +207,7 @@ const DUMMY_GOODS = [
     name: '26 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 140,
   },
   {
     id: 'g27',
@@ -215,7 +215,7 @@ const DUMMY_GOODS = [
     name: '27 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 150,
   },
   {
     id: 'g28',
@@ -223,7 +223,7 @@ const DUMMY_GOODS = [
     name: '28 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 160,
   },
   {
     id: 'g29',
@@ -231,7 +231,7 @@ const DUMMY_GOODS = [
     name: '29 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 170,
   },
   {
     id: 'g30',
@@ -239,7 +239,7 @@ const DUMMY_GOODS = [
     name: '30 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 180,
   },
   {
     id: 'g31',
@@ -247,7 +247,7 @@ const DUMMY_GOODS = [
     name: '31 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 190,
   },
   {
     id: 'g32',
@@ -255,7 +255,7 @@ const DUMMY_GOODS = [
     name: '32 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 200,
   },
   {
     id: 'g33',
@@ -271,7 +271,7 @@ const DUMMY_GOODS = [
     name: '34 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 50,
+    price: 60,
   },
   {
     id: 'g35',
@@ -279,7 +279,7 @@ const DUMMY_GOODS = [
     name: '35 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 70,
   },
   {
     id: 'g36',
@@ -287,7 +287,7 @@ const DUMMY_GOODS = [
     name: '36 What is Lorem Ipsum',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    price: 50,
+    price: 80,
   },
   {
     id: 'g37',
@@ -295,7 +295,7 @@ const DUMMY_GOODS = [
     name: '37 What is Lorem Ipsum',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    price: 50,
+    price: 90,
   },
 ];
 
