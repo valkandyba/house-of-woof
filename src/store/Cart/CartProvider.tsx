@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import CartContext from '../Cart/cart-context';
 import { CartItem, CartItemsContext } from '../types';
 
@@ -64,7 +64,15 @@ const cartReducer = (
 };
 
 const CartProvider: React.FC<CartProviderProps> = props => {
-  const [cartState, dispatchCartAction] = useReducer(cartReducer, []);
+  const initialState: CartItem[] = JSON.parse(
+    sessionStorage.getItem('cartItems') || '[]',
+  );
+
+  const [cartState, dispatchCartAction] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    sessionStorage.setItem('cartItems', JSON.stringify(cartState));
+  }, [cartState]);
 
   const handleAddItem = (item: CartItem) => {
     dispatchCartAction({ type: ActionType.ADD, payload: item });
