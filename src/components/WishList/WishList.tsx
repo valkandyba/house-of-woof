@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './WishList.module.scss';
+import { Grid } from '@mui/material';
 import WishListItem from './WishListItem/WishListItem';
 import './WishList.module.scss';
 
@@ -16,17 +16,18 @@ interface FavoriteItem {
 
 const WishList: React.FC<WishTableProps> = ({ favoriteItems }) => {
   return (
-    <ul className={classes['wish-list']}>
+    <Grid container spacing={3}>
       {favoriteItems.map(wishListItem => (
-        <WishListItem
-          id={wishListItem.id}
-          key={wishListItem.id}
-          name={wishListItem.name}
-          price={wishListItem.price}
-          img={wishListItem.img}
-        />
+        <Grid item xs={12} sm={6} md={3} key={wishListItem.id}>
+          <WishListItem
+            id={wishListItem.id}
+            name={wishListItem.name}
+            price={wishListItem.price}
+            img={wishListItem.img}
+          />
+        </Grid>
       ))}
-    </ul>
+    </Grid>
   );
 };
 

@@ -17,7 +17,7 @@ const WishListItem: React.FC<ProductItemProps> = ({ id, name, img, price }) => {
 
   const handleDecrementClick = () => {};
   return (
-    <li className={classes['wish-list-item']}>
+    <div className={classes['wish-list-item']}>
       <img src={img} alt={name} className={classes['wish-list-img']} />
       <span className={classes['wish-list-name']}>{name}</span>
       <span className={classes['wish-list-price']}>{price} $</span>
@@ -37,7 +37,7 @@ const WishListItem: React.FC<ProductItemProps> = ({ id, name, img, price }) => {
           <Delete />
         </IconButton>
       </div>
-    </li>
+    </div>
   );
 };
 
