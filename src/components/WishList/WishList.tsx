@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Grid } from '@mui/material';
 import WishListItem from './WishListItem/WishListItem';
-import './WishList.module.scss';
 
 interface WishListProps {
   favoriteItems: FavoriteItem[];
