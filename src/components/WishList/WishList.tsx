@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import WishListItem from './WishListItem/WishListItem';
 import './WishList.module.scss';
 
-interface WishTableProps {
+interface WishListProps {
   favoriteItems: FavoriteItem[];
 }
 
@@ -14,7 +14,7 @@ interface FavoriteItem {
   price: number;
 }
 
-const WishList: React.FC<WishTableProps> = ({ favoriteItems }) => {
+const WishList: React.FC<WishListProps> = ({ favoriteItems }) => {
   return (
     <Grid container spacing={3}>
       {favoriteItems.map(wishListItem => (
