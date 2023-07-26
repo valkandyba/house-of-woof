@@ -3,17 +3,25 @@ import { Link } from 'react-router-dom';
 import { AppBar, Badge, Box, Button, IconButton, Toolbar } from '@mui/material';
 import { AccountCircle, Favorite, ShoppingBasket } from '@mui/icons-material';
 import CartContext from '../../../store/Cart/cart-context';
+import FavoriteContext from '../../../store/Favorite/favorite-context';
 import Logo from '../../UI/Logo/Logo';
 import classes from './Header.module.scss';
 import { AppRoutes } from '../../../constants';
 
 const Header: React.FC = () => {
   const { items } = useContext(CartContext);
+  const { favoriteItems } = useContext(FavoriteContext);
 
   const numberOfProductItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
 
+  const numberOfFavoriteProductItems = favoriteItems.reduce(
+    (curNumber, item) => {
+      return curNumber + item.amount;
+    },
+    0,
+  );
   return (
     <AppBar position='fixed' id='header' className={classes.header}>
       <Toolbar className={classes.toolbar}>
@@ -21,7 +29,7 @@ const Header: React.FC = () => {
         <Box className={classes.actions}>
           <Link to={AppRoutes.WISH_LIST} className={classes['nav-link']}>
             <IconButton size='large' color='inherit'>
-              <Badge badgeContent={4} color='error'>
+              <Badge badgeContent={numberOfFavoriteProductItems} color='error'>
                 <Favorite />
               </Badge>
             </IconButton>

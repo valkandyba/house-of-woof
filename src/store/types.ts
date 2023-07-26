@@ -14,3 +14,11 @@ export interface CartItemsContext {
   handleIncrementItem: (id: string) => void;
   handleDecrementItem: (id: string) => void;
 }
+
+export interface FavoriteItemsContext {
+  favoriteItems: CartItem[];
+  handleAddFavoriteItem: (item: CartItem) => void;
+  handleRemoveFavoriteItem: (id: string) => void;
+  handleIncrementFavoriteItem: (id: string) => void;
+  handleDecrementFavoriteItem: (id: string) => void;
+}

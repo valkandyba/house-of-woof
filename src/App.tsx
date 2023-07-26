@@ -9,21 +9,24 @@ import { AppRoutes } from './constants';
 
 import './App.css';
 import CartProvider from './store/Cart/CartProvider';
+import FavoriteProvider from './store/Favorite/FavoriteProvider';
 
 function App() {
   return (
     <CartProvider>
-      <ThemeProvider theme={theme}>
-        <div className='App'>
-          <Router>
-            <Routes>
-              <Route path={AppRoutes.HOME_PAGE} element={<HomePage />} />
-              <Route path={AppRoutes.ORDER} element={<OrderPage />} />
-              <Route path={AppRoutes.WISH_LIST} element={<WishListPage />} />
-            </Routes>
-          </Router>
-        </div>
-      </ThemeProvider>
+      <FavoriteProvider>
+        <ThemeProvider theme={theme}>
+          <div className='App'>
+            <Router>
+              <Routes>
+                <Route path={AppRoutes.HOME_PAGE} element={<HomePage />} />
+                <Route path={AppRoutes.ORDER} element={<OrderPage />} />
+                <Route path={AppRoutes.WISH_LIST} element={<WishListPage />} />
+              </Routes>
+            </Router>
+          </div>
+        </ThemeProvider>
+      </FavoriteProvider>
     </CartProvider>
   );
 }

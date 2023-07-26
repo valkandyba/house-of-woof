@@ -36,10 +36,10 @@ function calculateOrderTotal(items: readonly CartItem[]) {
   return items.map(calculateItemTotal).reduce((sum, i) => sum + i, 0);
 }
 
-const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
+const OrderTable: React.FC<OrderTableProps> = () => {
   const { handleDecrementItem, handleRemoveItem, items } =
     useContext(CartContext);
-  const [cartItems, setCartItems] = useState<CartItem[]>(orderItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>(items);
 
   const invoiceTotal = calculateOrderTotal(items);
   const invoiceSubtotal = invoiceTotal / (TAX_RATE + 1);
@@ -59,8 +59,8 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
   };
 
   useEffect(() => {
-    setCartItems(orderItems);
-  }, [orderItems]);
+    setCartItems(items);
+  }, [items]);
 
   return (
     <div className={classes.order}>
