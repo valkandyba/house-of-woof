@@ -90,12 +90,17 @@ const CartProvider: React.FC<CartProviderProps> = props => {
     dispatchCartAction({ type: ActionType.REMOVE, payload: { id } });
   };
 
+  const numberOfProductItems = cartState.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
+
   const cartContext: CartItemsContext = {
     items: cartState,
     handleAddItem,
     handleRemoveItem,
     handleIncrementItem,
     handleDecrementItem,
+    numberOfProductItems,
   };
 
   return (

@@ -9,19 +9,9 @@ import classes from './Header.module.scss';
 import { AppRoutes } from '../../../constants';
 
 const Header: React.FC = () => {
-  const { items } = useContext(CartContext);
-  const { favoriteItems } = useContext(FavoriteContext);
+  const { numberOfProductItems } = useContext(CartContext);
+  const { numberOfFavoriteProductItems } = useContext(FavoriteContext);
 
-  const numberOfProductItems = items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
-
-  const numberOfFavoriteProductItems = favoriteItems.reduce(
-    (curNumber, item) => {
-      return curNumber + item.amount;
-    },
-    0,
-  );
   return (
     <AppBar position='fixed' id='header' className={classes.header}>
       <Toolbar className={classes.toolbar}>

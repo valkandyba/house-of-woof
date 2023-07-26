@@ -92,12 +92,17 @@ const FavoriteProvider: React.FC<FavoriteProviderProps> = props => {
     dispatchCartAction({ type: ActionType.REMOVE, payload: { id } });
   };
 
+  const numberOfFavoriteProductItems = cartState.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
+
   const favoriteContext: FavoriteItemsContext = {
     favoriteItems: cartState,
     handleAddFavoriteItem,
     handleRemoveFavoriteItem,
     handleIncrementFavoriteItem,
     handleDecrementFavoriteItem,
+    numberOfFavoriteProductItems,
   };
 
   return (
