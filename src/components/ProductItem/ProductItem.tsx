@@ -13,6 +13,7 @@ import ShoppingButton from '../UI/ShoppingButton/ShoppingButton';
 import { CartItem } from '../../store/types';
 import classes from './ProductItem.module.scss';
 import FavoriteContext from '../../store/Favorite/favorite-context';
+import { FavoriteBorder } from '@mui/icons-material';
 
 type ProductItemProps = Omit<CartItem, 'amount'>;
 
@@ -30,7 +31,8 @@ const ProductItem: React.FC<ProductItemProps> = ({
     handleRemoveItem,
     items,
   } = useContext(CartContext);
-  const { handleAddFavoriteItem, favoriteItems } = useContext(FavoriteContext);
+  const { handleAddFavoriteItem, favoriteItems, checkIsAddedFavoriteItem } =
+    useContext(FavoriteContext);
 
   const isAdded = items.some(item => item.id === id);
   const quantity = items.find(item => item.id === id)?.amount || 0;
@@ -79,7 +81,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
           color='primary'
           onClick={handleAddToFavorite}
         >
-          <FavoriteIcon />
+          {checkIsAddedFavoriteItem(id) ? <FavoriteIcon /> : <FavoriteBorder />}
         </IconButton>
         <ShoppingButton
           isAdded={isAdded}

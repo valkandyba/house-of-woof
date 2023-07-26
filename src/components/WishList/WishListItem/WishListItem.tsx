@@ -2,43 +2,69 @@ import React, { useContext } from 'react';
 import { IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import FavoriteContext from '../../../store/Favorite/favorite-context';
-import { CartItem } from '../../../store/types';
+import { FavoriteItem } from '../../../store/types';
 import ShoppingButton from '../../UI/ShoppingButton/ShoppingButton';
 import classes from './WishListItem.module.scss';
 import './WishListItem.module.scss';
+import CartContext from '../../../store/Cart/cart-context';
 
-type ProductItemProps = Omit<CartItem, 'amount'>;
+interface ProductItemProps {
+  favoriteItem: FavoriteItem;
+}
 
-const WishListItem: React.FC<ProductItemProps> = ({ id, name, img, price }) => {
+const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
   const { favoriteItems, handleRemoveFavoriteItem } =
     useContext(FavoriteContext);
+  const {
+    handleAddItem,
+    handleRemoveItem,
+    handleIncrementItem,
+    handleDecrementItem,
+    checkIsAddedItem,
+    items,
+  } = useContext(CartContext);
 
-  const handleAddClick = () => {};
+  const quantity = items.find(item => item.id === favoriteItem.id)?.amount || 0;
 
-  const handleDeleteClick = () => {};
+  const handleAddClick = () => {
+    handleAddItem({ ...favoriteItem, amount: 1 });
+  };
 
-  const handleIncrementClick = () => {};
+  const handleDeleteClick = () => {
+    handleRemoveItem(favoriteItem.id);
+  };
 
-  const handleDecrementClick = () => {};
+  const handleIncrementClick = () => {
+    handleIncrementItem(favoriteItem.id);
+  };
+
+  const handleDecrementClick = () => {
+    handleDecrementItem(favoriteItem.id);
+  };
 
   const handleRemoveFromFavorite = () => {
     const isAlreadyAdded = favoriteItems.some(
-      favoriteItem => favoriteItem.id === id,
+      item => item.id === favoriteItem.id,
     );
 
     if (isAlreadyAdded) {
-      handleRemoveFavoriteItem(id);
+      handleRemoveFavoriteItem(favoriteItem.id);
     }
   };
+
   return (
     <div className={classes['wish-list-item']}>
-      <img src={img} alt={name} className={classes['wish-list-img']} />
-      <span className={classes['wish-list-name']}>{name}</span>
-      <span className={classes['wish-list-price']}>{price} $</span>
+      <img
+        src={favoriteItem.img}
+        alt={favoriteItem.name}
+        className={classes['wish-list-img']}
+      />
+      <span className={classes['wish-list-name']}>{favoriteItem.name}</span>
+      <span className={classes['wish-list-price']}>{favoriteItem.price} $</span>
       <div className={classes['wish-list-item-actions']}>
         <ShoppingButton
-          isAdded={false}
-          quantity={0}
+          isAdded={checkIsAddedItem(favoriteItem.id)}
+          quantity={quantity}
           onAddClick={handleAddClick}
           onDeleteClick={handleDeleteClick}
           onIncrementClick={handleIncrementClick}

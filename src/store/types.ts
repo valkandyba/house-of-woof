@@ -13,14 +13,16 @@ export interface CartItemsContext {
   handleRemoveItem: (id: string) => void;
   handleIncrementItem: (id: string) => void;
   handleDecrementItem: (id: string) => void;
+  checkIsAddedItem: (id: string) => boolean;
   numberOfProductItems: number;
 }
 
+export type FavoriteItem = CartItem;
+
 export interface FavoriteItemsContext {
-  favoriteItems: CartItem[];
-  handleAddFavoriteItem: (item: CartItem) => void;
+  favoriteItems: FavoriteItem[];
+  handleAddFavoriteItem: (item: FavoriteItem) => void;
   handleRemoveFavoriteItem: (id: string) => void;
-  handleIncrementFavoriteItem: (id: string) => void;
-  handleDecrementFavoriteItem: (id: string) => void;
+  checkIsAddedFavoriteItem: (id: string) => boolean;
   numberOfFavoriteProductItems: number;
 }

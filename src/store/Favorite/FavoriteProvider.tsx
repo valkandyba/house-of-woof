@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import { CartItem, FavoriteItemsContext } from '../types';
+import { FavoriteItem, FavoriteItemsContext } from '../types';
 import FavoriteContext from './favorite-context';
 
 interface FavoriteProviderProps {
@@ -8,25 +8,23 @@ interface FavoriteProviderProps {
 
 enum ActionType {
   ADD = 'ADD',
-  INCREMENT = 'INCREMENT',
   REMOVE = 'REMOVE',
-  DECREMENT = 'DECREMENT',
 }
 
 interface Action {
-  type: ActionType.DECREMENT | ActionType.REMOVE | ActionType.INCREMENT;
-  payload: Pick<CartItem, 'id'>;
+  type: ActionType.REMOVE;
+  payload: Pick<FavoriteItem, 'id'>;
 }
 
 interface ActionAdd {
   type: ActionType.ADD;
-  payload: CartItem;
+  payload: FavoriteItem;
 }
 
 const favoriteReducer = (
-  state: CartItem[],
+  state: FavoriteItem[],
   action: Action | ActionAdd,
-): CartItem[] => {
+): FavoriteItem[] => {
   switch (action.type) {
     case ActionType.ADD:
       return [...state, action.payload];
@@ -34,74 +32,43 @@ const favoriteReducer = (
     case ActionType.REMOVE:
       return state.filter(item => item.id !== action.payload.id);
 
-    case ActionType.INCREMENT:
-      return state.map(item => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            amount: item.amount + 1,
-          };
-        } else {
-          return item;
-        }
-      });
-
-    case ActionType.DECREMENT:
-      return state.map(item => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            amount: item.amount - 1,
-          };
-        } else {
-          return item;
-        }
-      });
-
     default:
       return state;
   }
 };
 
 const FavoriteProvider: React.FC<FavoriteProviderProps> = props => {
-  const initialState: CartItem[] = JSON.parse(
-    sessionStorage.getItem('favoriteItems') || '[]',
-  );
-  const [cartState, dispatchCartAction] = useReducer(
+  const savedFavorites = sessionStorage.getItem('favoriteItems');
+  const initialState: FavoriteItem[] = savedFavorites
+    ? JSON.parse(savedFavorites)
+    : [];
+
+  const [favoriteState, dispatchFavoriteAction] = useReducer(
     favoriteReducer,
     initialState,
   );
 
   useEffect(() => {
-    sessionStorage.setItem('favoriteItems', JSON.stringify(cartState));
-  }, [cartState]);
+    sessionStorage.setItem('favoriteItems', JSON.stringify(favoriteState));
+  }, [favoriteState]);
 
-  const handleAddFavoriteItem = (item: CartItem) => {
-    dispatchCartAction({ type: ActionType.ADD, payload: item });
-  };
-
-  const handleIncrementFavoriteItem = (id: string) => {
-    dispatchCartAction({ type: ActionType.INCREMENT, payload: { id } });
-  };
-
-  const handleDecrementFavoriteItem = (id: string) => {
-    dispatchCartAction({ type: ActionType.DECREMENT, payload: { id } });
+  const handleAddFavoriteItem = (item: FavoriteItem) => {
+    dispatchFavoriteAction({ type: ActionType.ADD, payload: item });
   };
 
   const handleRemoveFavoriteItem = (id: string) => {
-    dispatchCartAction({ type: ActionType.REMOVE, payload: { id } });
+    dispatchFavoriteAction({ type: ActionType.REMOVE, payload: { id } });
   };
 
-  const numberOfFavoriteProductItems = cartState.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
+  const numberOfFavoriteProductItems = favoriteState.length;
+  const checkIsAddedFavoriteItem = (id: string) =>
+    favoriteState.some(favoriteItem => favoriteItem.id === id);
 
   const favoriteContext: FavoriteItemsContext = {
-    favoriteItems: cartState,
+    favoriteItems: favoriteState,
     handleAddFavoriteItem,
     handleRemoveFavoriteItem,
-    handleIncrementFavoriteItem,
-    handleDecrementFavoriteItem,
+    checkIsAddedFavoriteItem,
     numberOfFavoriteProductItems,
   };
 
