@@ -15,6 +15,7 @@ export interface CartItemsContext {
   handleDecrementItem: (id: string) => void;
   checkIsAddedItem: (id: string) => boolean;
   numberOfProductItems: number;
+  getItemQuantity: (id: string) => number;
 }
 
 export type FavoriteItem = CartItem;

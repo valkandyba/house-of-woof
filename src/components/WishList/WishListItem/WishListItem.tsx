@@ -21,10 +21,8 @@ const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
     handleIncrementItem,
     handleDecrementItem,
     checkIsAddedItem,
-    items,
+    getItemQuantity,
   } = useContext(CartContext);
-
-  const quantity = items.find(item => item.id === favoriteItem.id)?.amount || 0;
 
   const handleAddClick = () => {
     handleAddItem({ ...favoriteItem, amount: 1 });
@@ -64,7 +62,7 @@ const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
       <div className={classes['wish-list-item-actions']}>
         <ShoppingButton
           isAdded={checkIsAddedItem(favoriteItem.id)}
-          quantity={quantity}
+          quantity={getItemQuantity(favoriteItem.id)}
           onAddClick={handleAddClick}
           onDeleteClick={handleDeleteClick}
           onIncrementClick={handleIncrementClick}

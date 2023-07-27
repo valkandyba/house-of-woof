@@ -98,6 +98,9 @@ const CartProvider: React.FC<CartProviderProps> = props => {
   const checkIsAddedItem = (id: string) =>
     cartState.some(cartItem => cartItem.id === id);
 
+  const getItemQuantity = (id: string) =>
+    cartState.find(item => item.id === id)?.amount || 0;
+
   const cartContext: CartItemsContext = {
     items: cartState,
     handleAddItem,
@@ -106,6 +109,7 @@ const CartProvider: React.FC<CartProviderProps> = props => {
     handleDecrementItem,
     checkIsAddedItem,
     numberOfProductItems,
+    getItemQuantity,
   };
 
   return (
