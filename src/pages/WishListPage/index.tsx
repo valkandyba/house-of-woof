@@ -17,7 +17,7 @@ const WishListPage: React.FC = () => {
         img={imgCaption}
       />
       <Container maxWidth='lg'>
-        {<WishList favoriteItems={favoriteItems} />}
+        <WishList favoriteItems={favoriteItems} />
       </Container>
     </Layout>
   );

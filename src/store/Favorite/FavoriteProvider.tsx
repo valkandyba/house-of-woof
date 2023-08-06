@@ -62,14 +62,14 @@ const FavoriteProvider: React.FC<FavoriteProviderProps> = props => {
 
   const numberOfFavoriteProductItems = favoriteState.length;
 
-  const checkIsAddedFavoriteItem = (id: string) =>
+  const checkIsFavoriteItemAdded = (id: string) =>
     favoriteState.some(favoriteItem => favoriteItem.id === id);
 
   const favoriteContext: FavoriteItemsContext = {
     favoriteItems: favoriteState,
     handleAddFavoriteItem,
     handleRemoveFavoriteItem,
-    checkIsAddedFavoriteItem,
+    checkIsFavoriteItemAdded,
     numberOfFavoriteProductItems,
   };
 

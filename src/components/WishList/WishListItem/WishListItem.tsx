@@ -13,7 +13,7 @@ interface ProductItemProps {
 }
 
 const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
-  const { favoriteItems, handleRemoveFavoriteItem } =
+  const { handleRemoveFavoriteItem, checkIsFavoriteItemAdded } =
     useContext(FavoriteContext);
   const {
     handleAddItem,
@@ -41,9 +41,7 @@ const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
   };
 
   const handleRemoveFromFavorite = () => {
-    const isAlreadyAdded = favoriteItems.some(
-      item => item.id === favoriteItem.id,
-    );
+    const isAlreadyAdded = checkIsFavoriteItemAdded(favoriteItem.id);
 
     if (isAlreadyAdded) {
       handleRemoveFavoriteItem(favoriteItem.id);

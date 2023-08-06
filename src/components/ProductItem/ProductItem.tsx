@@ -32,11 +32,8 @@ const ProductItem: React.FC<ProductItemProps> = ({
     checkIsAddedItem,
     getItemQuantity,
   } = useContext(CartContext);
-  const { handleAddFavoriteItem, favoriteItems, checkIsAddedFavoriteItem } =
+  const { handleAddFavoriteItem, checkIsFavoriteItemAdded } =
     useContext(FavoriteContext);
-
-  // const isAdded = items.some(item => item.id === id);
-  // const quantity = items.find(item => item.id === id)?.amount;
 
   const handleAddClick = () => {
     handleAddItem({ id, name, img, description, price, amount: 1 });
@@ -55,9 +52,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
   };
 
   const handleAddToFavorite = () => {
-    const isAlreadyAdded = favoriteItems.some(
-      favoriteItem => favoriteItem.id === id,
-    );
+    const isAlreadyAdded = checkIsFavoriteItemAdded(id);
 
     if (!isAlreadyAdded) {
       handleAddFavoriteItem({ id, name, img, description, price, amount: 1 });
@@ -82,7 +77,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
           color='primary'
           onClick={handleAddToFavorite}
         >
-          {checkIsAddedFavoriteItem(id) ? <FavoriteIcon /> : <FavoriteBorder />}
+          {checkIsFavoriteItemAdded(id) ? <FavoriteIcon /> : <FavoriteBorder />}
         </IconButton>
         <ShoppingButton
           isAdded={checkIsAddedItem(id)}

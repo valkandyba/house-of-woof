@@ -24,6 +24,6 @@ export interface FavoriteItemsContext {
   favoriteItems: FavoriteItem[];
   handleAddFavoriteItem: (item: FavoriteItem) => void;
   handleRemoveFavoriteItem: (id: string) => void;
-  checkIsAddedFavoriteItem: (id: string) => boolean;
+  checkIsFavoriteItemAdded: (id: string) => boolean;
   numberOfFavoriteProductItems: number;
 }
