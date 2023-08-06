@@ -8,7 +8,12 @@ import ShoppingButton from '../../UI/ShoppingButton/ShoppingButton';
 
 type ProductItemProps = Omit<CartItem, 'amount' | 'description'>;
 
-const WishListItem: React.FC<ProductItemProps> = ({ id, name, img, price }) => {
+const WishListItem: React.FC<ProductItemProps> = ({
+  id,
+  title,
+  image,
+  price,
+}) => {
   const handleAddClick = () => {};
 
   const handleDeleteClick = () => {};
@@ -18,8 +23,8 @@ const WishListItem: React.FC<ProductItemProps> = ({ id, name, img, price }) => {
   const handleDecrementClick = () => {};
   return (
     <div className={classes['wish-list-item']}>
-      <img src={img} alt={name} className={classes['wish-list-img']} />
-      <span className={classes['wish-list-name']}>{name}</span>
+      <img src={image} alt={title} className={classes['wish-list-img']} />
+      <span className={classes['wish-list-name']}>{title}</span>
       <span className={classes['wish-list-price']}>{price} $</span>
       <div className={classes['wish-list-item-actions']}>
         <ShoppingButton

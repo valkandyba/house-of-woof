@@ -20,9 +20,9 @@ const WishList: React.FC<WishListProps> = ({ favoriteItems }) => {
         <Grid item xs={12} sm={6} md={3} key={wishListItem.id}>
           <WishListItem
             id={wishListItem.id}
-            name={wishListItem.name}
+            title={wishListItem.name}
             price={wishListItem.price}
-            img={wishListItem.img}
+            image={wishListItem.img}
           />
         </Grid>
       ))}
