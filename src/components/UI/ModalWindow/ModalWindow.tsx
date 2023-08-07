@@ -1,48 +1,32 @@
-import React, { FC, Fragment, ReactNode } from 'react';
-import ReactDOM from 'react-dom';
-
-import classes from './ModalWindow.module.scss';
-
-interface BackdropProps {
-  onClose: () => void;
-}
-
-const Backdrop: FC<BackdropProps> = ({ onClose }) => {
-  return <div className={classes.backdrop} onClick={onClose} />;
-};
-
-interface ModalOverlayProps {
-  children: ReactNode;
-}
-
-const ModalOverlay: FC<ModalOverlayProps> = ({ children }) => {
-  return (
-    <div className={classes.modal}>
-      <div className={classes.content}>{children}</div>
-    </div>
-  );
-};
-
-const portalElement = document.getElementById('overlays');
+import React from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 interface ModalWindowProps {
+  open: boolean;
   onClose: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const ModalWindow: FC<ModalWindowProps> = ({ onClose, children }) => {
-  return (
-    <Fragment>
-      {ReactDOM.createPortal(
-        <Backdrop onClose={onClose} />,
-        portalElement as Element,
-      )}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
-        portalElement as Element,
-      )}
-    </Fragment>
-  );
-};
+export default function ModalWindow({
+  open,
+  onClose,
+  children,
+}: ModalWindowProps) {
+  const handleClose = () => {
+    onClose();
+  };
 
-export default ModalWindow;
+  return (
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogContent>{children}</DialogContent>
+      </Dialog>
+    </div>
+  );
+}

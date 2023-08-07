@@ -12,6 +12,11 @@ const Footer: React.FC = () => {
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <footer id='footer' className={classes.footer}>
       <Container maxWidth='lg'>
@@ -20,15 +25,16 @@ const Footer: React.FC = () => {
           <Typography className={classes.copyright} component='span'>
             &copy; Copyright House of woof. All Rights Reserved
           </Typography>
-          <Button variant='text' color='inherit' onClick={handleModalOpen}>
-            Contact us
-          </Button>
-          {isModalOpen && (
-            <ModalWindow
-              onClose={() => setIsModalOpen(false)}
-              children={<ContactForm />}
-            />
-          )}
+          <div>
+            <Button variant='text' color='inherit' onClick={handleModalOpen}>
+              Contact us
+            </Button>
+            {isModalOpen && (
+              <ModalWindow open={isModalOpen} onClose={handleModalClose}>
+                <ContactForm />
+              </ModalWindow>
+            )}
+          </div>
         </Box>
       </Container>
     </footer>
