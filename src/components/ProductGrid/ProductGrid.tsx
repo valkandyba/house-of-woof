@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Grid } from '@mui/material';
 import ProductItem from '../ProductItem/ProductItem';
 import classes from './ProductGrid.module.scss';
@@ -7,16 +7,23 @@ import { CartItem } from '../../store/types';
 
 const ProductGrid: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const { response, loading } = useAxios({
     url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?page=${currentPage}&limit=12`,
     method: 'get',
   });
+  const products: CartItem[] = Array.isArray(response) ? response : [];
+
+  useEffect(() => {
+    if (Array.isArray(products)) {
+      setIsLastPage(products.length < 12);
+    }
+  }, [products]);
 
   const handlerLoadMore = () => {
     setCurrentPage(currentPage + 1);
   };
-
-  const products: CartItem[] = Array.isArray(response) ? response : [];
 
   return (
     <Container maxWidth='xl'>
@@ -29,7 +36,7 @@ const ProductGrid: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-        {response && (
+        {!isLastPage && (
           <div className={classes['btn-holder']}>
             <Button size='large' variant='contained' onClick={handlerLoadMore}>
               Load More
