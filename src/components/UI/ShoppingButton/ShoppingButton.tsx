@@ -5,7 +5,7 @@ import classes from './ShoppingButton.module.scss';
 
 type ShoppingButtonProps = {
   isAdded: boolean;
-  quantity: number;
+  quantity?: number;
   onAddClick: () => void;
   onDeleteClick: () => void;
   onIncrementClick: () => void;
@@ -14,7 +14,7 @@ type ShoppingButtonProps = {
 
 const ShoppingButton: React.FC<ShoppingButtonProps> = ({
   isAdded,
-  quantity,
+  quantity = 0,
   onAddClick,
   onDeleteClick,
   onIncrementClick,

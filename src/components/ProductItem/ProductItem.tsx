@@ -12,6 +12,8 @@ import CartContext from '../../store/Cart/cart-context';
 import ShoppingButton from '../UI/ShoppingButton/ShoppingButton';
 import { CartItem } from '../../store/types';
 import classes from './ProductItem.module.scss';
+import FavoriteContext from '../../store/Favorite/favorite-context';
+import { FavoriteBorder } from '@mui/icons-material';
 
 type ProductItemProps = Omit<CartItem, 'amount'>;
 
@@ -27,11 +29,11 @@ const ProductItem: React.FC<ProductItemProps> = ({
     handleIncrementItem,
     handleDecrementItem,
     handleRemoveItem,
-    items,
+    checkIsAddedItem,
+    getItemQuantity,
   } = useContext(CartContext);
-
-  const isAdded = items.some(item => item.id === id);
-  const quantity = items.find(item => item.id === id)?.amount || 0;
+  const { handleAddFavoriteItem, checkIsFavoriteItemAdded } =
+    useContext(FavoriteContext);
 
   const handleAddClick = () => {
     handleAddItem({ id, name, img, description, price, amount: 1 });
@@ -49,6 +51,14 @@ const ProductItem: React.FC<ProductItemProps> = ({
     handleDecrementItem(id);
   };
 
+  const handleAddToFavorite = () => {
+    const isAlreadyAdded = checkIsFavoriteItemAdded(id);
+
+    if (!isAlreadyAdded) {
+      handleAddFavoriteItem({ id, name, img, description, price, amount: 1 });
+    }
+  };
+
   return (
     <Card className={classes.product}>
       <CardMedia component='img' alt={name} height='140' image={img} />
@@ -62,12 +72,16 @@ const ProductItem: React.FC<ProductItemProps> = ({
         <Typography variant='h5'>{price}$</Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <IconButton aria-label='add to favorites' color='primary'>
-          <FavoriteIcon />
+        <IconButton
+          aria-label='add to favorites'
+          color='primary'
+          onClick={handleAddToFavorite}
+        >
+          {checkIsFavoriteItemAdded(id) ? <FavoriteIcon /> : <FavoriteBorder />}
         </IconButton>
         <ShoppingButton
-          isAdded={isAdded}
-          quantity={quantity}
+          isAdded={checkIsAddedItem(id)}
+          quantity={getItemQuantity(id)}
           onAddClick={handleAddClick}
           onDeleteClick={handleDeleteClick}
           onIncrementClick={handleIncrementClick}

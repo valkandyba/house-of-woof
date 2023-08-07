@@ -1,29 +1,21 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@mui/material';
+import FavoriteContext from '../../store/Favorite/favorite-context';
 import WishListItem from './WishListItem/WishListItem';
+import { CartItem } from '../../store/types';
 
 interface WishListProps {
-  favoriteItems: FavoriteItem[];
+  favoriteItems: CartItem[];
 }
 
-interface FavoriteItem {
-  id: string;
-  name: string;
-  img: string;
-  price: number;
-}
+const WishList: React.FC<WishListProps> = () => {
+  const { favoriteItems } = useContext(FavoriteContext);
 
-const WishList: React.FC<WishListProps> = ({ favoriteItems }) => {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} mb={5}>
       {favoriteItems.map(wishListItem => (
         <Grid item xs={12} sm={6} md={3} key={wishListItem.id}>
-          <WishListItem
-            id={wishListItem.id}
-            name={wishListItem.name}
-            price={wishListItem.price}
-            img={wishListItem.img}
-          />
+          <WishListItem favoriteItem={wishListItem} />
         </Grid>
       ))}
     </Grid>
