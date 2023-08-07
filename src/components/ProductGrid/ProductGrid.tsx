@@ -8,16 +8,17 @@ import { CartItem } from '../../store/types';
 const ProductGrid: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
+  const limitProductsOnPage = 12;
 
   const { response, loading } = useAxios({
-    url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?page=${currentPage}&limit=12`,
+    url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?page=${currentPage}&limit=${limitProductsOnPage}`,
     method: 'get',
   });
   const products: CartItem[] = Array.isArray(response) ? response : [];
 
   useEffect(() => {
     if (Array.isArray(products)) {
-      setIsLastPage(products.length < 12);
+      setIsLastPage(products.length < limitProductsOnPage);
     }
   }, [products]);
 
