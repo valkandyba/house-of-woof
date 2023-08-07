@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   IconButton,
@@ -36,10 +36,9 @@ function calculateOrderTotal(items: readonly CartItem[]) {
   return items.map(calculateItemTotal).reduce((sum, i) => sum + i, 0);
 }
 
-const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
+const OrderTable: React.FC<OrderTableProps> = () => {
   const { handleDecrementItem, handleRemoveItem, items } =
     useContext(CartContext);
-  const [cartItems, setCartItems] = useState<CartItem[]>(orderItems);
 
   const invoiceTotal = calculateOrderTotal(items);
   const invoiceSubtotal = invoiceTotal / (TAX_RATE + 1);
@@ -58,10 +57,6 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
     }
   };
 
-  useEffect(() => {
-    setCartItems(orderItems);
-  }, [orderItems]);
-
   return (
     <div className={classes.order}>
       {hasItems && (
@@ -77,7 +72,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderItems }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {cartItems.map((row, index) => (
+                {items.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell>
                       <div className={classes['item-cell']}>

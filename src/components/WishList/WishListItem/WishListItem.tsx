@@ -1,35 +1,66 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { CartItem } from '../../../store/types';
-import './WishListItem.module.scss';
-import classes from './WishListItem.module.scss';
+import FavoriteContext from '../../../store/Favorite/favorite-context';
+import { FavoriteItem } from '../../../store/types';
 import ShoppingButton from '../../UI/ShoppingButton/ShoppingButton';
+import classes from './WishListItem.module.scss';
+import './WishListItem.module.scss';
+import CartContext from '../../../store/Cart/cart-context';
 
-type ProductItemProps = Omit<CartItem, 'amount' | 'description'>;
+interface ProductItemProps {
+  favoriteItem: FavoriteItem;
+}
 
-const WishListItem: React.FC<ProductItemProps> = ({
-  id,
-  title,
-  image,
-  price,
-}) => {
-  const handleAddClick = () => {};
+const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
+  const { handleRemoveFavoriteItem, checkIsFavoriteItemAdded } =
+    useContext(FavoriteContext);
+  const {
+    handleAddItem,
+    handleRemoveItem,
+    handleIncrementItem,
+    handleDecrementItem,
+    checkIsAddedItem,
+    getItemQuantity,
+  } = useContext(CartContext);
 
-  const handleDeleteClick = () => {};
+  const handleAddClick = () => {
+    handleAddItem({ ...favoriteItem, amount: 1 });
+  };
 
-  const handleIncrementClick = () => {};
+  const handleDeleteClick = () => {
+    handleRemoveItem(favoriteItem.id);
+  };
 
-  const handleDecrementClick = () => {};
+  const handleIncrementClick = () => {
+    handleIncrementItem(favoriteItem.id);
+  };
+
+  const handleDecrementClick = () => {
+    handleDecrementItem(favoriteItem.id);
+  };
+
+  const handleRemoveFromFavorite = () => {
+    const isAlreadyAdded = checkIsFavoriteItemAdded(favoriteItem.id);
+
+    if (isAlreadyAdded) {
+      handleRemoveFavoriteItem(favoriteItem.id);
+    }
+  };
+
   return (
     <div className={classes['wish-list-item']}>
-      <img src={image} alt={title} className={classes['wish-list-img']} />
-      <span className={classes['wish-list-name']}>{title}</span>
-      <span className={classes['wish-list-price']}>{price} $</span>
+      <img
+        src={favoriteItem.img}
+        alt={favoriteItem.name}
+        className={classes['wish-list-img']}
+      />
+      <span className={classes['wish-list-name']}>{favoriteItem.name}</span>
+      <span className={classes['wish-list-price']}>{favoriteItem.price} $</span>
       <div className={classes['wish-list-item-actions']}>
         <ShoppingButton
-          isAdded={false}
-          quantity={0}
+          isAdded={checkIsAddedItem(favoriteItem.id)}
+          quantity={getItemQuantity(favoriteItem.id)}
           onAddClick={handleAddClick}
           onDeleteClick={handleDeleteClick}
           onIncrementClick={handleIncrementClick}
@@ -38,6 +69,7 @@ const WishListItem: React.FC<ProductItemProps> = ({
         <IconButton
           className={`${classes.button} ${classes.minus}`}
           color='primary'
+          onClick={handleRemoveFromFavorite}
         >
           <Delete />
         </IconButton>
