@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             </Button>
             {isModalOpen && (
               <ModalWindow open={isModalOpen} onClose={handleModalClose}>
-                <ContactForm />
+                <ContactForm onClose={handleModalClose} />
               </ModalWindow>
             )}
           </div>

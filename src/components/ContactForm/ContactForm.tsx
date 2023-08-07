@@ -3,7 +3,11 @@ import ContactFormImg from '../../assets/contact-form-img.png';
 import { Button, TextField, Typography } from '@mui/material';
 import classes from './ContactForm.module.scss';
 
-const ContactForm = () => {
+interface ContactFormProps {
+  onClose: () => void;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [tel, setTel] = useState('');
@@ -13,6 +17,7 @@ const ContactForm = () => {
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Tel:', tel);
+    onClose();
   };
 
   return (

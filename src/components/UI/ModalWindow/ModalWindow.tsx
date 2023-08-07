@@ -8,11 +8,11 @@ interface ModalWindowProps {
   children: React.ReactNode;
 }
 
-export default function ModalWindow({
+const ModalWindow: React.FC<ModalWindowProps> = ({
   open,
   onClose,
   children,
-}: ModalWindowProps) {
+}) => {
   const handleClose = () => {
     onClose();
   };
@@ -29,4 +29,6 @@ export default function ModalWindow({
       </Dialog>
     </div>
   );
-}
+};
+
+export default ModalWindow;
