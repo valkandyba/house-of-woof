@@ -55,7 +55,14 @@ const ProductItem: React.FC<ProductItemProps> = ({
     const isAlreadyAdded = checkIsFavoriteItemAdded(id);
 
     if (!isAlreadyAdded) {
-      handleAddFavoriteItem({ id, name, img, description, price, amount: 1 });
+      handleAddFavoriteItem({
+        id,
+        title,
+        image,
+        description,
+        price,
+        amount: 1,
+      });
     }
   };
 
