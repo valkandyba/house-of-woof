@@ -64,9 +64,10 @@ const cartReducer = (
 };
 
 const CartProvider: React.FC<CartProviderProps> = props => {
-  const initialState: CartItem[] = JSON.parse(
-    sessionStorage.getItem('cartItems') || '[]',
-  );
+  const savedOrderItems = sessionStorage.getItem('cartItems');
+  const initialState: CartItem[] = savedOrderItems
+    ? JSON.parse(savedOrderItems)
+    : [];
 
   const [cartState, dispatchCartAction] = useReducer(cartReducer, initialState);
 
@@ -90,12 +91,25 @@ const CartProvider: React.FC<CartProviderProps> = props => {
     dispatchCartAction({ type: ActionType.REMOVE, payload: { id } });
   };
 
+  const numberOfProductItems = cartState.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
+
+  const checkIsAddedItem = (id: string) =>
+    cartState.some(cartItem => cartItem.id === id);
+
+  const getItemQuantity = (id: string) =>
+    cartState.find(item => item.id === id)?.amount || 0;
+
   const cartContext: CartItemsContext = {
     items: cartState,
     handleAddItem,
     handleRemoveItem,
     handleIncrementItem,
     handleDecrementItem,
+    checkIsAddedItem,
+    numberOfProductItems,
+    getItemQuantity,
   };
 
   return (
