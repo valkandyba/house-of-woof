@@ -13,21 +13,15 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
   onClose,
   children,
 }) => {
-  const handleClose = () => {
-    onClose();
-  };
-
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogContent>{children}</DialogContent>
-      </Dialog>
-    </div>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
+    >
+      <DialogContent>{children}</DialogContent>
+    </Dialog>
   );
 };
 
