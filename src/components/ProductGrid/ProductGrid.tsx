@@ -10,17 +10,20 @@ const ProductGrid: React.FC = () => {
   const [isLastPage, setIsLastPage] = useState(false);
   const limitProductsOnPage = 12;
 
+  const [loadedProducts, setLoadedProducts] = useState<CartItem[]>([]);
+
   const { response, loading } = useAxios({
     url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?page=${currentPage}&limit=${limitProductsOnPage}`,
     method: 'get',
   });
-  const products: CartItem[] = Array.isArray(response) ? response : [];
 
   useEffect(() => {
-    if (Array.isArray(products)) {
-      setIsLastPage(products.length < limitProductsOnPage);
+    if (Array.isArray(response)) {
+      setLoadedProducts([...loadedProducts, ...response]);
+      // @ts-ignore
+      setIsLastPage(response.length < limitProductsOnPage);
     }
-  }, [products]);
+  }, [response]);
 
   const handlerLoadMore = () => {
     setCurrentPage(currentPage + 1);
@@ -31,8 +34,8 @@ const ProductGrid: React.FC = () => {
       <div className={classes.products}>
         {loading && 'loading'}
         <Grid container spacing={3} mb={5}>
-          {products.map((product: CartItem) => (
-            <Grid item xs={12} sm={6} md={3} key={product.id}>
+          {loadedProducts.map((product: CartItem, index: number) => (
+            <Grid item xs={12} sm={6} md={3} key={product.id + index}>
               <ProductItem {...product} />
             </Grid>
           ))}
