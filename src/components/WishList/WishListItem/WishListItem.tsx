@@ -51,11 +51,11 @@ const WishListItem: React.FC<ProductItemProps> = ({ favoriteItem }) => {
   return (
     <div className={classes['wish-list-item']}>
       <img
-        src={favoriteItem.img}
-        alt={favoriteItem.name}
+        src={favoriteItem.image}
+        alt={favoriteItem.title}
         className={classes['wish-list-img']}
       />
-      <span className={classes['wish-list-name']}>{favoriteItem.name}</span>
+      <span className={classes['wish-list-name']}>{favoriteItem.title}</span>
       <span className={classes['wish-list-price']}>{favoriteItem.price} $</span>
       <div className={classes['wish-list-item-actions']}>
         <ShoppingButton

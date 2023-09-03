@@ -87,10 +87,10 @@ const OrderTable: React.FC<OrderTableProps> = () => {
                         </span>
                         <img
                           className={classes['item-img']}
-                          src={row.img}
-                          alt={row.name}
+                          src={row.image}
+                          alt={row.title}
                         />
-                        <span>{row.name}</span>
+                        <span>{row.title}</span>
                       </div>
                     </TableCell>
                     <TableCell align='right'>{row.amount}</TableCell>
