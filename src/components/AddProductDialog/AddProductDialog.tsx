@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { Button, TextField, Typography } from '@mui/material';
 import ModalWindow from '../UI/ModalWindow/ModalWindow';
+import AddProductImg from '../../assets/contact-form-img.png';
+import classes from './AddProductDialog.module.scss';
 
 interface AddProductDialogProps {
   open: boolean;
@@ -43,6 +46,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
       method: 'post',
       body: data,
     });
+    onClose();
   };
 
   return (
@@ -52,41 +56,69 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
     >
+      <Typography
+        variant={'h4'}
+        component='h2'
+        textAlign='center'
+        mb={2}
+        fontWeight='bold'
+      >
+        Add new product
+      </Typography>
+      <img className={classes.img} src={AddProductImg} alt='img' />
       <form>
-        <div className='form-row'>
-          <input
+        <div className={classes.row}>
+          <TextField
             type='text'
             name='image'
             defaultValue={image}
             onChange={handleFormFieldChange}
+            label='Enter product img url'
+            variant='standard'
+            fullWidth
+            required
           />
         </div>
-        <div className='form-row'>
-          <input
+        <div className={classes.row}>
+          <TextField
             type='text'
             name='title'
             defaultValue={title}
             onChange={handleFormFieldChange}
+            label='Enter product title'
+            variant='standard'
+            fullWidth
+            required
           />
         </div>
-        <div className='form-row'>
-          <input
+        <div className={classes.row}>
+          <TextField
             type='text'
             name='description'
             defaultValue={description}
             onChange={handleFormFieldChange}
+            label='Enter product description'
+            variant='standard'
+            fullWidth
+            required
           />
         </div>
-        <div className='form-row'>
-          <input
+        <div className={classes.row}>
+          <TextField
             type='text'
             name='price'
             defaultValue={price}
             onChange={handleFormFieldChange}
+            label='Enter product price'
+            variant='standard'
+            fullWidth
+            required
           />
         </div>
-        <div className='form-row'>
-          <button onClick={handleSendForm}>Submit</button>
+        <div className='submit-row '>
+          <Button onClick={handleSendForm} variant='contained' size='large'>
+            Submit
+          </Button>
         </div>
       </form>
     </ModalWindow>
