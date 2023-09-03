@@ -19,8 +19,8 @@ type ProductItemProps = Omit<CartItem, 'amount'>;
 
 const ProductItem: React.FC<ProductItemProps> = ({
   id,
-  name,
-  img,
+  title,
+  image,
   description,
   price,
 }) => {
@@ -36,7 +36,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
     useContext(FavoriteContext);
 
   const handleAddClick = () => {
-    handleAddItem({ id, name, img, description, price, amount: 1 });
+    handleAddItem({ id, title, image, description, price, amount: 1 });
   };
 
   const handleDeleteClick = () => {
@@ -55,16 +55,23 @@ const ProductItem: React.FC<ProductItemProps> = ({
     const isAlreadyAdded = checkIsFavoriteItemAdded(id);
 
     if (!isAlreadyAdded) {
-      handleAddFavoriteItem({ id, name, img, description, price, amount: 1 });
+      handleAddFavoriteItem({
+        id,
+        title,
+        image,
+        description,
+        price,
+        amount: 1,
+      });
     }
   };
 
   return (
     <Card className={classes.product}>
-      <CardMedia component='img' alt={name} height='140' image={img} />
+      <CardMedia component='img' alt={title} height='140' image={image} />
       <CardContent className={classes['product-content']}>
         <Typography gutterBottom variant='h5' component='h5'>
-          {name}
+          {title}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {description}
