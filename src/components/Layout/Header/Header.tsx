@@ -50,14 +50,12 @@ const Header: React.FC = () => {
           >
             LogIn
           </Button>
-          <div>
-            <Button variant='text' color='inherit' onClick={handleModalOpen}>
-              Add Product
-            </Button>
-            {isModalOpen && (
-              <AddProductDialog open={isModalOpen} onClose={handleModalClose} />
-            )}
-          </div>
+          <Button variant='text' color='inherit' onClick={handleModalOpen}>
+            Add Product
+          </Button>
+          {isModalOpen && (
+            <AddProductDialog open={isModalOpen} onClose={handleModalClose} />
+          )}
         </Box>
       </Toolbar>
     </AppBar>

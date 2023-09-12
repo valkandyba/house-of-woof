@@ -71,7 +71,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
           <TextField
             type='text'
             name='image'
-            defaultValue={image}
+            value={image}
             onChange={handleFormFieldChange}
             label='Enter product img url'
             variant='standard'
@@ -83,7 +83,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
           <TextField
             type='text'
             name='title'
-            defaultValue={title}
+            value={title}
             onChange={handleFormFieldChange}
             label='Enter product title'
             variant='standard'
@@ -95,7 +95,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
           <TextField
             type='text'
             name='description'
-            defaultValue={description}
+            value={description}
             onChange={handleFormFieldChange}
             label='Enter product description'
             variant='standard'
@@ -107,7 +107,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
           <TextField
             type='text'
             name='price'
-            defaultValue={price}
+            value={price}
             onChange={handleFormFieldChange}
             label='Enter product price'
             variant='standard'
