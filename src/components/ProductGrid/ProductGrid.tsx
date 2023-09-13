@@ -32,11 +32,10 @@ const ProductGrid: React.FC = () => {
       // @ts-ignore
       setIsLastPage(response.length < DEFAULT_PAGE_LIMIT);
     }
-  }, [response, currentPage]);
+  }, [response]);
 
   const handlerLoadMore = () => {
     setCurrentPage(currentPage + 1);
-    console.log(response);
   };
 
   return (

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 interface UseAxiosProps {
   baseUrl: string;
-  params: object;
+  params: { page?: number; sortBy?: string; order?: string; limit?: number };
   body?: object;
   headers?: object;
   method: 'get' | 'post';
@@ -36,7 +36,7 @@ const useAxios = ({
 
   useEffect(() => {
     fetchData();
-  }, [method, baseUrl, body, headers]);
+  }, [method, baseUrl, body, headers, params.page]);
 
   return { response, error, loading };
 };
