@@ -1,27 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import axios, { AxiosError } from 'axios';
 
-import axios from 'axios';
-
+export enum FetchMethod {
+  GET = "get",
+  POST = "post"
+}
 interface UseAxiosProps {
   baseUrl: string;
-  params: { page?: number; sortBy?: string; order?: string; limit?: number };
-  body?: object;
   headers?: object;
-  method: 'get' | 'post';
 }
 
-const useAxios = ({
+interface FetchParams {
+  params: { page?: number; sortBy?: string; order?: string; limit?: number };
+  body?: object;
+  method: FetchMethod;
+}
+
+const useAxios = <ResponseData>({
   baseUrl,
-  params,
-  method,
-  body,
   headers,
 }: UseAxiosProps) => {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [response, setResponse] = useState<ResponseData | null>(null);
+  const [error, setError] = useState<AxiosError | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchData = () => {
+  const fetchData = useCallback(({
+    params,
+    method,
+    body }: FetchParams
+  ) => {
     axios[method](baseUrl, { headers, body, params })
       .then(res => {
         setResponse(res.data);
@@ -32,13 +39,9 @@ const useAxios = ({
       .finally(() => {
         setLoading(false);
       });
-  };
+  }, [baseUrl, headers]);
 
-  useEffect(() => {
-    fetchData();
-  }, [method, baseUrl, body, headers, params.page]);
-
-  return { response, error, loading };
+  return { response, error, loading, fetchData };
 };
 
 export default useAxios;

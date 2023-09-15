@@ -1,3 +1,13 @@
+export interface ProductItem {
+  id: string;
+  image: string;
+  category: string;
+  title: string;
+  description: string;
+  price: number;
+  createdAt: string;
+}
+
 export interface CartItem {
   id: string;
   image: string;
