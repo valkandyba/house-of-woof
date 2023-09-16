@@ -5,15 +5,24 @@ import classes from './ProductGrid.module.scss';
 import useAxios from '../../hooks/useAxios';
 import { CartItem } from '../../store/types';
 
+const DEFAULT_PAGE_LIMIT = 12;
+const DEFAULT_SORT_BY = 'createdAt';
+const DEFAULT_SORT_ORDER = 'desc';
+
 const ProductGrid: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
-  const limitProductsOnPage = 12;
-
   const [loadedProducts, setLoadedProducts] = useState<CartItem[]>([]);
 
   const { response, loading } = useAxios({
-    url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?page=${currentPage}&limit=${limitProductsOnPage}`,
+    baseUrl: 'https://64876d13beba62972790a0da.mockapi.io/api/v1/products',
+    params: {
+      sortBy: DEFAULT_SORT_BY,
+      order: DEFAULT_SORT_ORDER,
+      page: currentPage,
+      limit: DEFAULT_PAGE_LIMIT,
+    },
+    // url: `https://64876d13beba62972790a0da.mockapi.io/api/v1/products?sortBy=${SORT_BY}&order=${SORT_ORDER}&page=${currentPage}&limit=${limitProductsOnPage}`,
     method: 'get',
   });
 
@@ -21,7 +30,7 @@ const ProductGrid: React.FC = () => {
     if (Array.isArray(response)) {
       setLoadedProducts([...loadedProducts, ...response]);
       // @ts-ignore
-      setIsLastPage(response.length < limitProductsOnPage);
+      setIsLastPage(response.length < DEFAULT_PAGE_LIMIT);
     }
   }, [response]);
 

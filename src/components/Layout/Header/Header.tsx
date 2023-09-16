@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Badge, Box, Button, IconButton, Toolbar } from '@mui/material';
 import { AccountCircle, Favorite, ShoppingBasket } from '@mui/icons-material';
@@ -7,10 +7,20 @@ import FavoriteContext from '../../../store/Favorite/favorite-context';
 import Logo from '../../UI/Logo/Logo';
 import classes from './Header.module.scss';
 import { AppRoutes } from '../../../constants';
+import AddProductDialog from '../../AddProductDialog/AddProductDialog';
 
 const Header: React.FC = () => {
   const { numberOfProductItems } = useContext(CartContext);
   const { numberOfFavoriteProductItems } = useContext(FavoriteContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <AppBar position='fixed' id='header' className={classes.header}>
@@ -40,6 +50,12 @@ const Header: React.FC = () => {
           >
             LogIn
           </Button>
+          <Button variant='text' color='inherit' onClick={handleModalOpen}>
+            Add Product
+          </Button>
+          {isModalOpen && (
+            <AddProductDialog open={isModalOpen} onClose={handleModalClose} />
+          )}
         </Box>
       </Toolbar>
     </AppBar>
